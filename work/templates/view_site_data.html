@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Progress</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            margin: 10px 0;
+        }
+        .description {
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background: #0056b3;
+        }
+        .remaining-amount {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .green {
+            color: green;
+        }
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1> Site Work Progress</h1>
+    <p><strong>Name Of Site:</strong> {{ site.name_of_site }}</p>
+    <p><strong>Location:</strong> {{ site.location }}</p>
+    <p><strong>Name Of The Employee:</strong> {{ site.name_of_the_employee }}</p>
+    <p><strong>Phone Number:</strong> {{ site.phone_number }}</p>
+    <p><strong>Today's Expenses:</strong> <span id="todays-expenses">{{ site.to_day_expensives }}</span></p>
+    <p><strong>Created At:</strong> {{ site.created_at }}</p>
+    <p><strong>Description:</strong> <span class="description">{{ site.description }}</span></p>
+
+    <div class="remaining-amount" id="remaining-amount"></div>
+</div>
+
+<script>
+    // JavaScript to calculate the remaining amount
+    window.onload = function() {
+        // Replace with actual values from your backend or form
+        var totalContractAmount = parseFloat(document.getElementById('total-contract-amount').innerText) || 0;
+        var todaysExpenses = parseFloat(document.getElementById('todays-expenses').innerText) || 0;
+        
+        // Calculate the remaining amount
+        var remainingAmount = totalContractAmount - todaysExpenses;
+        
+        // Display the remaining amount and set the color based on its value
+        var remainingAmountElement = document.getElementById('remaining-amount');
+        remainingAmountElement.innerText = 'Remaining Amount: ' + remainingAmount.toFixed(2);
+        
+        if (remainingAmount > 0) {
+            remainingAmountElement.className = 'green';
+        } else if (remainingAmount < 0) {
+            remainingAmountElement.className = 'red';
+        } else {
+            remainingAmountElement.className = ''; // Default case, no color
+        }
+    }
+</script>
+
+</body>
+</html>
+
+
+

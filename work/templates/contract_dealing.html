@@ -1,0 +1,16 @@
+<!-- contracts/templates/contracts/add_contract.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Contract Dealing</title>
+</head>
+<body>
+    <h1>Add New Contract</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Contract</button>
+    </form>
+</body>
+</html>
